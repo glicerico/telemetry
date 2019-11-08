@@ -60,11 +60,13 @@ The first four anomoly events effect positions in the leaf and spine of the Clos
 of downstream connections to edge routers and top of rack (ToR) switches.  The spine tests will show the effect of traffic
 redistribution over the remaining equal-cost multi-path (ECMP) routes but will push the traffic rehashing back to the leafs.
 
+```
 Event 1 leaf1
 Event 2 leaf6
 Event 3 spine2
 Event 4 cascade bgp clear of leaf2 followed by leaf8 30 seconds later
 Event 5 cascade bgp clear of spine1 followed by spine2 and then spine3 with ~45 second gap between each event.
+```
 
 The last two tests have multiple devices in the event.  The first has two leafs, one on either side of the spine which
 will force traffic changes back to the ToR and edge routers as well as effect traffic at the spines.  The next test effects
@@ -77,27 +79,34 @@ to a single spine, effecting rehashing on all leafs.
 Please Note:
 
 For metrics that are sampled per interface:
+```
  leaf and spine devices have 32 network interfaces, 1 management interface and 1 Null0 interface
  dr devices have 72 network interfaces (36 per line card), 1 management interface and 1 Null0 interface
+```
 
 The topology is configured for a dual stack environment with both IPv6 and IPv4 address families
 _________________________
 
 These metrics are sampled per CPU:
+```
 Cisco-IOS-XR-fib-common-oper:fib-statistics/nodes/node/drops
 Cisco-IOS-XR-nto-misc-oper:memory-summary/nodes/node/summary
 Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization
+```
 
 For these metrics,
+```
  leaf and spine devices have one CPU (0/RP0/CPU0)
  dr devices have N CPUs where N includes one CPU per line card and one per RP
   in this sample case there are 3 CPUs (0/RP0/CPU0, 0/0/CPU/0, 0/1/CPU/0)
-
+```
 ________________________
 
 These metrics are sampled per device:
+```
 Cisco-IOS-XR-ip-rib-ipv4-oper:rib/vrfs/vrf/afs/af/safs/saf/ip-rib-route-table-names/ip-rib-route-table-name/protocol/bgp/as/information
 Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info
+```
 
 #### Files ####
 
